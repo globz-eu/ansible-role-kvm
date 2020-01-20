@@ -1,0 +1,16 @@
+---
+- name: install kvm packages
+  apt:
+    name:
+      - qemu-kvm
+      - libvirt-bin
+      - bridge-utils
+      - virt-manager
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: add user to libvirt group
+  user:
+    name: "{{ kvm_user }}"
+    groups: libvirt
+    append: true
