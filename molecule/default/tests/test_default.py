@@ -12,7 +12,9 @@ def test_dependencies(host):
         'libvirt-bin',
         'qemu-kvm',
         'bridge-utils',
-        'virt-manager'
+        'virt-manager',
+        'virtinst',
+        'ovmf'
     ]
 
     for package in packages:
