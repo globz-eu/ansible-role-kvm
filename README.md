@@ -32,3 +32,9 @@ None.
 ## License
 
 MIT
+
+## Test
+```bash
+pip install requirements.txt
+molecule test
+```
