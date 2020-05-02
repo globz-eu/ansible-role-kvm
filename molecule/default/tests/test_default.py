@@ -27,3 +27,4 @@ def test_user_in_libvirt_group(host):
     vagrant_user = host.user('root')
 
     assert 'libvirt' in vagrant_user.groups
+    assert 'kvm' in vagrant_user.groups
