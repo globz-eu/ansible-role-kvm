@@ -8,16 +8,27 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_dependencies(host):
-    packages = [
-        'libvirt-bin',
-        'qemu-kvm',
-        'bridge-utils',
-        'virt-manager',
-        'virtinst',
-        'ovmf'
-    ]
+    packages = {
+        'bionic': [
+            'libvirt-bin',
+            'qemu-kvm',
+            'bridge-utils',
+            'virt-manager',
+            'virtinst',
+            'ovmf'
+        ],
+        'focal': [
+            'qemu-kvm',
+            'libvirt-daemon',
+            'bridge-utils',
+            'virt-manager',
+            'virtinst',
+            'libvirt-daemon-system',
+            'ovmf',
+        ]
+    }
 
-    for package in packages:
+    for package in packages[host.system_info.codename]:
         tested_package = host.package(package)
 
         assert tested_package.is_installed

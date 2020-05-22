@@ -1,15 +1,10 @@
 ---
 - name: install kvm packages
   apt:
-    name:
-      - qemu-kvm
-      - libvirt-bin
-      - bridge-utils
-      - virt-manager
-      - virtinst
-      - ovmf
+    name: "{{ item }}"
     update_cache: yes
     cache_valid_time: 3600
+  loop: "{{ packages[ansible_distribution_release] }}"
 
 - name: add user to libvirt group
   user:
